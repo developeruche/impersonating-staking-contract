@@ -1,4 +1,6 @@
 import { ethers } from "hardhat";
+const helpers = require("@nomicfoundation/hardhat-network-helpers");
+
 
 async function main() {
 
@@ -21,11 +23,19 @@ async function main() {
 
   console.log("Transfering Tokens");
   
-  hydra.transfer(BORED_APE_NFT_OWNER, ethers.utils.parseEther("2000"));
-  kvs.transfer(staking.address, ethers.utils.parseEther("2000"));
+  await (await hydra.transfer(BORED_APE_NFT_OWNER, ethers.utils.parseEther("2000"))).wait();
+  await (await kvs.transfer(staking.address, ethers.utils.parseEther("2000"))).wait();
 
 
   console.log("IMPERSONATING")
+
+  await helpers.impersonateAccount(BORED_APE_NFT_OWNER);
+  const impersonatedSigner = await ethers.getSigner(BORED_APE_NFT_OWNER);
+
+
+  console.log("STAKING")
+  await (await staking.stake(STAKING_AMOUNT)).wait();
+
 
 
   console.log("ADDRESS");
