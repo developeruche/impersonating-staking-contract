@@ -1,0 +1,23 @@
+{
+  "name": "staking-fork",
+  "version": "1.0.0",
+  "description": "This is classwork project that would be have and erc20 token and a staking platform that would allow only a Bored APE NFT owner can stake on the protocol",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "forking",
+    "mainnet",
+    "developeruche"
+  ],
+  "author": "developeruche",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "hardhat": "^2.11.2"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.3"
+  }
+}
