@@ -304,7 +304,7 @@ contract Staking is Ownable, ReentrancyGuard {
     uint256 constant delta = 17658811475;
     uint256 currentRate;
     uint256 totalStaked;
-    bool stakeActive;
+    bool stakeActive=true;
     address constant bored_ape_address = 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D;
 
     struct Withdrawals {

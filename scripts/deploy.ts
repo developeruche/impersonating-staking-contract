@@ -4,7 +4,7 @@ const helpers = require("@nomicfoundation/hardhat-network-helpers");
 
 async function main() {
 
-  const BORED_APE_NFT_OWNER = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D";
+  const BORED_APE_NFT_OWNER = "0x2c2ed4b3876c442fee80BeE76Ce0eE2CA2A512AF";
   const STAKING_AMOUNT = ethers.utils.parseEther("1");
 
   console.log("DEPOLYING TOKEN and CONTRACT")
@@ -33,12 +33,20 @@ async function main() {
   const impersonatedSigner = await ethers.getSigner(BORED_APE_NFT_OWNER);
 
 
+  // console.log("SENDING")
+  // let signer = await ethers.getSigners()
+  // await signer[0].sendTransaction({
+  //   to: BORED_APE_NFT_OWNER,
+  //   value: ethers.utils.parseEther("1")
+  // })
   console.log("STAKING")
-  await (await staking.stake(STAKING_AMOUNT)).wait();
+
+  await (await hydra.connect(impersonatedSigner).approve(staking.address, STAKING_AMOUNT)).wait();
+  await (await staking.connect(impersonatedSigner).stake(STAKING_AMOUNT)).wait();
 
 
 
-  console.log("ADDRESS");
+  console.log("STAKING SUCESSFUL :)");
   
 }
 
